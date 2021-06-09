@@ -3,11 +3,11 @@ App = {
   contracts: {},
   account: "0x0",
 
-  init: async function () {
-    return await App.initWeb3();
+  init: function () {
+    return App.initWeb3();
   },
 
-  initWeb3: async function () {
+  initWeb3: function () {
     if (typeof web3 !== "undefined") {
       App.web3Provider = web3.currentProvider;
       web3 = new Web3(web3.currentProvider);
@@ -27,7 +27,7 @@ App = {
 
       App.contracts.Election.setProvider(App.web3Provider);
 
-      return App.bindEvents();
+      return App.render();
     });
   },
 
@@ -56,11 +56,12 @@ App = {
         var condidatesResults = $("#candidatesResults");
         condidatesResults.empty();
 
-        for (let i = 0; i <= condidatesCount; i++) {
+        for (let i = 1; i <= condidatesCount; i++) {
           electionInstance.condidates(i).then((condidate) => {
-            let id = condidate.id.words[0];
-            let name = condidate.name;
-            let voteCount = condidate.voteCount.words[0];
+            console.log(condidate);
+            let id = condidate[0];
+            let name = condidate[1];
+            let voteCount = condidate[2];
 
             var condidateTemplate =
               "<tr><th>" +
