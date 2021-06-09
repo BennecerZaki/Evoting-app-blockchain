@@ -1,0 +1,43 @@
+Objectifs : 
+  - Création d'une application décentralisé dans un réseau Etherieum
+  - Implémentation des smart contracts Li Fih 2 Condidat 
+  - Test Our Smart Contract - Robuste Code -
+  - Deployer les smart contract dans la blockchain local Etherieum
+  - Permettre aux compte du réseau Etherieum de voter
+  - Voir les résultat en temps réelle 
+
+Blockchain : C'est une base de donnée décentralisé Win Ness Kamel Ta9der Tshouf Ouésh Kayen Ou Ayi Haja Tzidha Lazem Ness Kamel Y'acceptiw Ouésh Rah Tzid
+
+Dans le système de Evoting : Au lieu ma la donnée Rahi f un serveur centralisé tkoun distribué 3la kamel l nodes f Blockchain ( Ou Hadi data li tkoun distribué ismeha public ledger)
+
+Comment Créer la blockchain : Kayen 3efssa ismeha Smart Contract C'est un code li yet executa f VM ta3 Etherieum ( Hadak Le Réseau Local Li Hkina 3Lih Men 9bel )
+Ou Hada Houwa Le Code Li Ra7 Ykoun Fih Business Logic Ta3 L'app ( Voter Add Condidat etc .. ). Ta9der Tshouf Public Ledger houwa Data Layer & Smart Contract Hiya Service f SOA Wela Business Logic
+
+Les caractéristique ta3 L'app :
+  - application décentralisé
+  - network peer to peer
+  - data is shared ( décentralisé f network koul wa7d f network 3endhom data partagé )
+
+Sofware Architecture :
+  - 3endena Client Side HTML CSS JS
+  - Au lieu connecté à un serveur on connecte l blockchain
+
+Dependencies :
+  - Node 
+  - Truffle : Framework Ykhalina NCréyiw Application Décentralisé f réseau Etherieum - Yakhdem Bsolidty Bach Tcréé Smart Contract - 
+  - Gnache : Local and Memory Etheruim Blockchain in Local - for Dev Purpose -  
+  - Meta Mask Ext : Bach Testa3mel Blockchain Lazem Tconnecté LHad Network - Psk Blockchain C'est un Network - Ou Hadi Tkhalina NConnectiwlha
+
+Wa7d men les modèles houwa pet Shop li Kaynin f truffle bach nest3mlouh : truffle unbox pet-shop
+
+- Awel Haja Création Ta3 Election Sol Ou Ndirou Smoke Test Bach Nshoufou ila koulsh Aw Yemshi Bien
+
+- contract Election {
+  // Store & Read Condidate 
+  string public condidate;
+  //Constructor 
+  constructor () public {
+    condidate = "Condidate 01";
+  }
+}
+Haka Zedna Election Fiha Condidate Bach Ntestiw Berk
