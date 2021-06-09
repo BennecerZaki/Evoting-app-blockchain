@@ -41,3 +41,33 @@ Wa7d men les modèles houwa pet Shop li Kaynin f truffle bach nest3mlouh : truff
   }
 }
 Haka Zedna Election Fiha Condidate Bach Ntestiw Berk
+
+- Mba3da Migration : L'artifcat houwa l'abstraction ta3 contract f truffle ou hada houwa li rah nexportiwh bach nest3mlouh l console deploy ou test ou ayi interaction f system
+C'est bon on a créer la migration on va la runné par truffle migrate 
+
+- pour faire des test sur la console : truffle console -> Election.deployed().then((instance) => { app = instance })
+La dernière ligne c'est pour avoir une instance de notre smart contract
+
+Pour voir l'adresse ta3 Contract li tcryat ndirou app.adresse
+
+Pour voir le condidat li kayen f contract app.condidate();
+
+C'est bon Kemlna m3a Smoke Test - Koulshéy Rah Yemshi Bien -
+
+
+
+- Doka Marahsh ndéfiniw statiquement les condidat ta3na lazem ndirou model ou mba3d list ta3 condidates ou haka ...
+- Bach Ndirou Liste Nest3mlou Mapping : Mapping hiya map f JS
+
+- truffle migrate --reset : Data Ou El Code F Blockchian rahi immutable mat9dersh tbadalha tsma ki tkoun f dev ou rak hab tbadal fel code wla data dir --reset
+
+- El Map Par défaut tebda men 0 
+
+pour avoir accés au network local Etherieum On utilise la librairie Web3
+pour voir tout les addresses dans le réseau web3.eth.getAccounts();
+
+
+
+Maintenant on passe aux tests :
+  - Si on a des bugs au niveau d'un contract, il faut déployer une nouvelle copie du contract. Cependant, cette copie n'aura pas la même adresse ni le même état ( data ), et dans ce cas il faut désactiver le contract et refaire pas mal de chose copier l'état .. etc + Gas etc ...
+  - Pour éviter tout celà on fait de bon tests
