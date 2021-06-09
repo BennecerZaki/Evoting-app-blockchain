@@ -22,12 +22,16 @@ contract Election {
     addCondidate("Karim BENZEMA");
     addCondidate("Saeed ABDELKRIM");
   }
+  event votedEvent (
+    uint indexed _condidateId
+  );
 
   // Add Condidate Function
   function addCondidate(string memory _name) private {
     condidatesCount++;
     condidates[condidatesCount] = Condidate(condidatesCount, _name, 0);
   }
+
 
   function vote(uint _condidateId) public {
     require(!voters[msg.sender]);
@@ -38,5 +42,8 @@ contract Election {
 
     // Update Condidate Vote
     condidates[_condidateId].voteCount++;
+
+    // trigger voted event
+    emit votedEvent(_condidateId);
   }
 }
