@@ -45,7 +45,6 @@ App = {
         $("#accountAddress").html("Your Account: " + account);
       }
     });
-
     // Load contract data
     App.contracts.Election.deployed()
       .then((instance) => {
@@ -53,8 +52,10 @@ App = {
         return electionInstance.condidatesCount();
       })
       .then((condidatesCount) => {
-        var condidatesResults = $("#candidatesResults");
+        let condidatesResults = $("#candidatesResults");
         condidatesResults.empty();
+
+        let condidatesSelect = $("#candidatesSelect");
 
         for (let i = 1; i <= condidatesCount; i++) {
           electionInstance.condidates(i).then((condidate) => {
@@ -71,11 +72,21 @@ App = {
               "</td><td>" +
               voteCount +
               "</td></tr>";
-
             condidatesResults.append(condidateTemplate);
+
+            var candidateOption =
+              "<option value='" + id + "' >" + name + "</ option>";
+            console.log(candidateOption);
+
+            condidatesSelect.append(candidateOption);
           });
         }
-
+        return electionInstance.voters(App.account);
+      })
+      .then((hasVoted) => {
+        if (hasVoted) {
+          $("form").hide();
+        }
         loader.hide();
         content.show();
       })
@@ -84,24 +95,20 @@ App = {
       });
   },
 
-  bindEvents: function () {
-    $(document).on("click", ".btn-adopt", App.handleAdopt);
-  },
-
-  markAdopted: function () {
-    /*
-     * Replace me...
-     */
-  },
-
-  handleAdopt: function (event) {
-    event.preventDefault();
-
-    var petId = parseInt($(event.target).data("id"));
-
-    /*
-     * Replace me...
-     */
+  castVote: () => {
+    var candidateId = $("#candidatesSelect").val();
+    App.contracts.Election.deployed()
+      .then(function (instance) {
+        return instance.vote(candidateId, { from: App.account });
+      })
+      .then(function (result) {
+        // Wait for votes to update
+        $("#content").hide();
+        $("#loader").show();
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
   },
 };
 

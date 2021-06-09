@@ -11,6 +11,9 @@ contract Election {
   // Store & Fetch Condidates
   mapping(uint => Condidate) public condidates;
 
+  // Stores & Fetch Voters 
+  mapping(address => bool) public voters;
+
   // Store Condidates Count
   uint public condidatesCount; // Cuz Makansh size ta3 mapping wla iterate 3lih
 
@@ -24,5 +27,16 @@ contract Election {
   function addCondidate(string memory _name) private {
     condidatesCount++;
     condidates[condidatesCount] = Condidate(condidatesCount, _name, 0);
+  }
+
+  function vote(uint _condidateId) public {
+    require(!voters[msg.sender]);
+
+    require(_condidateId > 0 && _condidateId <= condidatesCount);
+    // Record that voter has voted
+    voters[msg.sender] = true;
+
+    // Update Condidate Vote
+    condidates[_condidateId].voteCount++;
   }
 }
